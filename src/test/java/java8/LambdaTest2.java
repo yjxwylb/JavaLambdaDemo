@@ -69,6 +69,40 @@ public class LambdaTest2 {
         };
         System.out.println(com3.compare(10,20));
     }
+    //自定义计算功能的函数式接口MyCaculateFunction
+    @Test
+    public void test04() {
+        MyCaculateFunction<Integer> caculate1 = new MyCaculateFunction<Integer>() {
+            @Override
+            public Integer caculate(Integer value) {
+                return value * value;
+            }
+        };
+        System.out.println(caculate1.caculate(10));
+        System.out.println("=============================");
+        //直接使用函数式接口
+        MyCaculateFunction<Integer> caculate2 = x -> x * x;
+        System.out.println(caculate2.caculate(200)
+        );
+        //调用自定义方法
+        Integer number = caculate(30, x -> x * x);
+        System.out.println(number);
 
+    }
+
+    //自定义公共方法
+    public Integer caculate(Integer value, MyCaculateFunction<Integer> myCaculateFunction) {
+        return myCaculateFunction.caculate(value);
+    }
+
+    @Test
+    public void test05(){
+        Long value = getValue(100L, 200L, (x, y) -> x * y);
+        System.out.println(value);
+    }
+
+  public Long  getValue(Long x,Long y,MyFunction<Long> myFunction){
+        return myFunction.operate(x,y);
+  }
 
 }
