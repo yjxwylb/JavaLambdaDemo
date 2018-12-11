@@ -19,9 +19,13 @@ public class LambdaTest4 {
      */
     @Test
     public void test1() {
-        Consumer<Integer> consumer=x-> System.out.println("小明今天消费");
+        Consumer<Integer> consumer = x -> System.out.println(x);
+        consumer.accept(1000);
+        System.out.println("========================");
+        Consumer<Integer> consumer1 = System.out::println;//对象名::方法名
+        consumer1.accept(2000);
     }
 
-    }
+}
 
 
